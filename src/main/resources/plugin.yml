@@ -1,0 +1,14 @@
+name: MyLocation
+version: '${project.version}'
+main: com.github.tsuoihito.mylocation.MyLocation
+api-version: 1.19
+authors: [ tsuoihito ]
+description: Register a location and teleport there anytime!
+commands:
+  mylocation:
+    aliases: [ ml ]
+    description: テレポートできる地点の表示・設定を行う
+    usage: |
+      /<command> - 地点の一覧を表示する
+      /<command> add 名前 - 地点を追加する
+      /<command> remove 番号 - 地点を削除する
