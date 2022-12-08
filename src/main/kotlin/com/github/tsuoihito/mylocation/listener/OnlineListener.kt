@@ -18,7 +18,6 @@ class OnlineListener(private val plugin: MyLocation) : Listener {
 
     @EventHandler
     fun onPlayerQuit(event: PlayerQuitEvent) {
-        plugin.playerPoints = plugin.playerPoints
-            .filterKeys { it != event.player.uniqueId }
+        plugin.playerPoints = plugin.playerPoints.minus(event.player.uniqueId)
     }
 }

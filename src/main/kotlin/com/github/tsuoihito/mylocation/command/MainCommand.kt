@@ -35,12 +35,10 @@ class MainCommand(private val plugin: MyLocation) : TabExecutor {
             val name = args[1]
 
             val item = sender.inventory.itemInMainHand
-            val material = if (item.type == Material.AIR) Material.ENDER_EYE
-            else item.type
+            val material = if (item.type == Material.AIR) Material.ENDER_EYE else item.type
             val newPoints = (points ?: emptyList())
                 .plus(Point(name, sender.location, material.toString()))
             plugin.playerPoints = plugin.playerPoints
-                .filterKeys { it != sender.uniqueId }
                 .plus(Pair(sender.uniqueId, newPoints))
 
             savePoints(plugin.dataFolder, sender.uniqueId, newPoints)
@@ -71,7 +69,6 @@ class MainCommand(private val plugin: MyLocation) : TabExecutor {
             val removedPoint = points[index]
             val newPoints = points.minus(removedPoint)
             plugin.playerPoints = plugin.playerPoints
-                .filterKeys { it != sender.uniqueId }
                 .plus(Pair(sender.uniqueId, newPoints))
 
             savePoints(plugin.dataFolder, sender.uniqueId, newPoints)

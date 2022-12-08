@@ -28,6 +28,6 @@ class GuiListener(private val plugin: MyLocation) : Listener {
     @EventHandler
     fun onInventoryClose(event: InventoryCloseEvent) {
         plugin.openingInventories = plugin.openingInventories
-            .filterKeys { it != event.player.uniqueId }
+            .minus(event.player.uniqueId)
     }
 }
