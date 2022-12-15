@@ -17,7 +17,7 @@ class MainCommand(private val plugin: MyLocation) : TabExecutor {
         if (sender !is Player) return true
 
         if (args.isEmpty()) {
-            val gui = getGui(plugin, sender.uniqueId)
+            val gui = getGui(plugin.playerPoints, sender.uniqueId)
             plugin.openingInventories = plugin.openingInventories
                 .plus(Pair(sender.uniqueId, gui))
             sender.openInventory(gui)

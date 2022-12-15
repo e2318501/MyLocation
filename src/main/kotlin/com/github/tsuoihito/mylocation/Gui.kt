@@ -9,18 +9,18 @@ import org.bukkit.inventory.ItemFlag
 import org.bukkit.inventory.ItemStack
 import java.util.*
 
-private const val inventorySize = 54
+private const val INVENTORY_SIZE = 54
 
-fun getGui(plugin: MyLocation, uuid: UUID?): Inventory {
-    val gui = Bukkit.createInventory(null, inventorySize, "登録地点")
-    plugin.playerPoints[uuid]?.let {
+fun getGui(playerPoints: Map<UUID, List<Point>>, uuid: UUID?): Inventory {
+    val gui = Bukkit.createInventory(null, INVENTORY_SIZE, "登録地点")
+    playerPoints[uuid]?.let {
         getItems(it).forEachIndexed { i, item -> gui.setItem(i, item) }
     }
     return gui
 }
 
 private fun getItems(points: List<Point>): List<ItemStack> {
-    return points.take(inventorySize).mapIndexed { index, point ->
+    return points.take(INVENTORY_SIZE).mapIndexed { index, point ->
         val item = ItemStack(Material.valueOf(point.materialString))
         val meta = item.itemMeta
         meta?.apply {
